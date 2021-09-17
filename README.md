@@ -83,15 +83,30 @@ This package was inspired by the need for an ELM library that:
 
 ## Documentation 
 
-ExtremeLearning implements twelve (12) ELM approaches: 6 regressors, and 6 classifiers. All of them implement the same API as SciKit-Learn's classifiers and regressors. 
+ExtremeLearning implements twelve (12) ELM approaches: 6 regressors, and 6 classifiers. All of them implement the same API as SciKit-Learn's classifiers and regressors. Classifiers are implemented using the POELM approach. 
 ### Regressors 
+
+1. ELMRegressor - A basic ELM regression implementation  (ELM)
+2. PCTRegressor - ELM, with input data transformed by Principal Components Analysis (ELM-PCA)
+3. PCIRegressor - ELM, with hidden_layer_size and weights initialized according to PCA-ELM
+4. PCPRegressor - ELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
+5. PrunedRegressor - ELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
+6. DropRegressor - ELM with 'Dropout' and 'DropConnection'
+
+### Classifiers
+1. ELMClassifier - A basic POELM implementation  (ELM)
+2. PCTClassifier - POELM, with input data transformed by Principal Components Analysis (ELM-PCA)
+3. PCIClassifier - POELM, with hidden_layer_size and weights initialized according to PCA-ELM
+4. PCPClassifier - POELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
+5. PrunedClassifier - POELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
+6. DropClassifier - POELM with 'Dropout' and 'DropConnection' 
+
+
+### Methods 
 **Regressor Methods** 
 1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, 1) 
 2. ```.predict(x)``` - make predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. 
 
-
-
-### Classifiers
 **Classifier Methods**
 1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, n_classes) and is one-hot encoded.  
 2. ```.predict(x)``` - make class predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. Output is not one-hot encoded. 
