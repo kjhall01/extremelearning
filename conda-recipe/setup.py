@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setup(
     name = "extremelearning",
-    version = "0.1.1",
+    version = "0.1.3",
     author = "Kyle Hall",
     author_email = "kjhall@iri.columbia.edu",
     description = ("A selection of ELM-based Machine Learning Approaches"),
