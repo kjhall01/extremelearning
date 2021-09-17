@@ -14,7 +14,7 @@ authors:
     orcid: 0000-0003-3010-2158
     affiliation: 2
 affiliations:
- - name: International Research Institute for Climate & Society
+ - name: International Research Institute for Climate & Society, Columbia University
    index: 1
  - name: Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
    index: 2
