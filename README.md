@@ -60,6 +60,15 @@
 <!-- Why XCast -->
 ## About
 
+Extreme Learning implements 'Extreme Learning Machine' models of various types in they style of Scikit-Learn, to make them easy to use and consistent with the rest of the Python data science ecosystem. It is built on top of NumPy, mostly, with some SciKit-Learn and SciPy under the hood as well. ELM is was so named by Huang et. al.; in a nutshell the model is a randomly initialized feed-forward neural network, whose output layer is fit with a generalized Moore-Penrose inverse (basically Ordinary Least Squares). The different flavors of ELM do different things with Initialization, Principal Components Analysis, DropOut, and Pruning, and are detailed in the documentation section. ELM classifiers are implemented using the POELM approach, which involves replacing ELM's linear objective function with a sigmoid function, and modifying the output layer's 'fitting' process. 
+
+This package was inspired by the need for an ELM library that: 
+1. Encompasses a broad range of ELM approaches 
+2. Provides a consistent API with SciKit-Learn 
+3. Is 'Picklable' - and therefore, parallelizable and compatible with XCast
+4. Is easy to install and quick to learn
+
+
 
 
 <!-- GETTING STARTED -->
@@ -67,16 +76,24 @@
 
 1. Install with [Anaconda](https://anaconda.org/)
    ```sh
-   conda install -c hallkjc01 xcast
+   conda install -c hallkjc01 extremelearning
    ```
-2. Read the [Documentation](https://github.com/kjhall01/xcast/)
-3. Check out our [blog](blogwebsite.org)
+2. Read the [Documentation](https://github.com/kjhall01/extremelearning/)
+3. Check out the [demo](
 
 
-<!-- ROADMAP -->
-## Roadmap
+## Documentation 
 
-See the [open issues](https://github.com/kjhall01/xcast/issues) for a list of proposed features (and known issues).
+ExtremeLearning implements twelve (12) ELM approaches: 6 regressors, and 6 classifiers. All of them implement the same API as SciKit-Learn's classifiers and regressors. 
+
+ExtremeLearning Regressors have the following methods: 
+1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, 1) 
+2. ```.predict(x)``` - make predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. 
+
+ExtremeLearning Classifiers have the following methods: 
+1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, n_classes) and is one-hot encoded.  
+2. ```.predict(x)``` - make class predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. Output is not one-hot encoded. 
+3. ```.predict_proba(x)``` - make probabilistic class predictions using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. Output is of shape (n_samples, n_classes) and represents a predicted probability for each class, that will sum to 1.0. 
 
 
 <!-- CONTRIBUTING -->
