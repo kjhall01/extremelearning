@@ -1,5 +1,6 @@
 ---
 bibliography: paper.bib
+reference-section-title: References
 title: 'ExtremeLearning: A Selection of Pure-Python Extreme Learning Machine Approaches '
 tags:
   - Python
@@ -46,5 +47,3 @@ Each method here is implemented as both a regressor, using the standard 'ELM' ge
 
 # Acknowledgements
 Sincere thanks to the inventors and researchers that proposed and tested the methods available in `ExtremeLearning` 
-
-# References
