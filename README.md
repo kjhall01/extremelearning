@@ -59,7 +59,7 @@
 <!-- Why XCast -->
 ## About
 
-Extreme Learning implements 'Extreme Learning Machine' models of various types in they style of Scikit-Learn, to make them easy to use and consistent with the rest of the Python data science ecosystem. It is built on top of NumPy, mostly, with some SciKit-Learn and SciPy under the hood as well. ELM is was so named by Huang et. al.; in a nutshell the model is a randomly initialized feed-forward neural network, whose output layer is fit with a generalized Moore-Penrose inverse (basically Ordinary Least Squares). The different flavors of ELM do different things with Initialization, Principal Components Analysis, DropOut, and Pruning, and are detailed in the documentation section. ELM classifiers are implemented using the POELM approach, which involves replacing ELM's linear objective function with a sigmoid function, and modifying the output layer's 'fitting' process. 
+Extreme Learning implements 'Extreme Learning Machine' models of various types in the style of Scikit-Learn, to make them easy to use. It is built on top of NumPy, mostly, with some SciKit-Learn and SciPy under the hood as well. ELM is was so named by Huang et. al.; in a nutshell the model is a randomly initialized feed-forward neural network, whose output layer is fit with a generalized Moore-Penrose inverse (basically Ordinary Least Squares). The different flavors of ELM do different things with Initialization, Principal Components Analysis, DropOut, and Pruning, and are detailed in the documentation section. ELM classifiers are implemented using the POELM approach, which involves replacing ELM's linear objective function with a sigmoid function, and modifying the output layer's 'fitting' process. 
 
 This package was inspired by the need for an ELM library that: 
 1. Encompasses a broad range of ELM approaches 
@@ -78,7 +78,10 @@ This package was inspired by the need for an ELM library that:
    conda install -c hallkjc01 extremelearning
    ```
 2. Read the [Documentation](https://github.com/kjhall01/extremelearning/)
-3. Check out the [demo](https://github.com/kjhall01/extremelearning/blob/main/demo.ipynb)
+3. Run the [tests](https://github.com/kjhall01/extremelearning/blob/main/test.py): 
+   ```sh
+   python test.py
+   ```
 
 
 ## Documentation 
