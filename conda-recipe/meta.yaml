@@ -1,12 +1,12 @@
 package:
-  name: pyridl
-  version: "0.2.1"
+  name: extremelearning
+  version: "0.1.1"
 
 source:
-  url:  https://bitbucket.org/hallkjc01/pyridl/get/pyridl-v0.2.1.tar.gz
+  url:  https://github.com/kjhall01/extremelearning/archive/refs/tags/extremelearning-v1.1.tar.gz
 build:
   number: 0
-  string: pyridl
+  string: extremelearning
 
 
 requirements:
@@ -16,20 +16,19 @@ requirements:
     - setuptools
   run:
     - python>=3.4,<3.9
-    - xarray
-    - pathlib
-    - dask
+    - numpy
+    - scipy
+    - sklearn
 
 
 
 test:
   imports:
-    - pyridl
-    - pyridl.datalibrary_source
+    - extremelearning
 
 about:
   home:
   license: MIT
-  summary: 'Pythonic Access to IRI Data Library data'
-  description: 'Ever wanted to use IRI DL directly in python? '
-  dev_url:  https://bitbucket.org/hallkjc01/pyridl/src/master/
+  summary: 'A selection of ELM-based Machine learning Approaches'
+  description: 'Scikit-Learn style ELM Regressors and Classifiers '
+  dev_url:  https://github.com/kjhall01/extremelearning/
