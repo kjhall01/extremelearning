@@ -1,112 +1,51 @@
 ---
-title: 'ExtremeLearning: A Python package for galactic dynamics'
+title: 'ExtremeLearning: A Selection of Pure-Python Extreme Learning Machine Approaches '
 tags:
   - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - Extreme Learning Machine
+  - Artificial Intelligence
+  - Machine Learning
+  - ELM
 authors:
-  - name: Adrian M. Price-Whelan^[co-first author] # note this makes a footnote saying 'co-first author'
-    orcid: 0000-0003-0872-7098
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID^[co-first author] # note this makes a footnote saying 'co-first author'
+  - name: Kyle Hall
+    orcid: 0000-0003-3723-0662
+    affiliation: 1
+  - name: Nachiketa Acharya
+    orcid: 0000-0003-3010-2158
     affiliation: 2
-  - name: Author with no affiliation^[corresponding author]
-    affiliation: 3
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University
+ - name: International Research Institute for Climate & Society
    index: 1
- - name: Institution Name
+ - Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
    index: 2
- - name: Independent Researcher
-   index: 3
-date: 13 August 2017
+
+date: 17 September 2021
 bibliography: paper.bib
 
-# Optional fields if submitting to a AAS journal too, see this blog post:
-# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
-aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+An "Extreme Learning Machine" (ELM) is a fast, non-linear regression model, which fits the output layer of a randomly-initialized feed forward neural network using a Moore-Penrose Generalized Inverse [@Huang:2004]. Since it was published in the early 2000s, numerous related methods have been proposed. Each new method slightly changes the underlying ELM Model, either by pruning nodes in the hidden layer, applying Principal Components Analysis to the training data, modifying the hidden layer weight initialization scheme, changing the objective function, or some other new method. `ExtremeLearning` is a fully open-source python package that implements these new Regressors and Classifiers based on ELM in the style of SciKit-Learn, in a way that is compatible with python parallelism and cluster computing .
 
 # Statement of need
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
-`astropy.coordinates`).
+While there are some implementations of ELM available in Python, many of the proposed modifications to ELM are only implemented by their original authors in R, Stata, or Matlab, or are not available to the public. The ones that are available in Python are generally disparate, difficult to find, and implement inconsistent APIs. This requires that the user spend time collating, installing, and learning each one, which creates a significant barrier to productivity. Additionally, some implementations of ELM in Python rely on compiled code in other languages to enhance performance, which makes them non-serializable and difficult to scale with distributed computing. `ExtremeLearning` implements a selection of ELM approaches in pure python, with an API designed to mirror those of the commonly used SciKit-Learn classifiers and regressors to boost synergy with the larger Python data science ecosystem. Being pure python, `ExtremeLearning` models are fully serializable and can easily be used with python parallelism and distributed computing libraries. `ExtremeLearning` is distributed through Anaconda.org, and is extremely easy to install and use. Altogether, `ExtremeLearning` removes barriers to the research and development of ELM-based machine learning solutions in python.
 
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
+# Overview of Methods
 
-# Mathematics
+Each method here is implemented as both a regressor, using the standard 'ELM' generalized Moore-Penrose inverse approach, and as a classifier, which implements the 'Probabilistic Output' ELM  (POELM) approach.  POELM substitutes the Moore-Penrose inverse and linear objective function with a sigmoid objective function and specialized linear programming.
 
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
+1. Basic Extreme Learning Machine (ELM) / Probabilistic Output Extreme Learning Machine (POELM)
+2. ELM/POELM with Principal Components (PCA) transformation applied to predictors
+3. ELM/POELM with weights initialized to coefficients of a PCA transformation fit on the predictors (PCA-ELM)
+4. ELM/POELM with PCA transformation applied to the randomly initialized hidden layer weights
+5. ELM/POELM with hidden layer node pruning according the statistical relevance
+6. ELM/POELM with biased or unbiased dropout of neurons and 'dropconnect' of neuron weights 
 
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% }
+`ExtremeLearning` also allows the user to mix and match these features, to create a model that best fits their needs. 
 
 # Acknowledgements
-
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+Sincere thanks to the inventors and researchers that proposed and tested the methods available in `ExtremeLearning` 
 
 # References
