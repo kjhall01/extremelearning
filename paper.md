@@ -19,7 +19,7 @@ affiliations:
  - name: Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
    index: 2
 date: 17 September 2021
-bibliography: paper.bib
+bibliography: paper.bibtex
 ---
 
 # Summary
