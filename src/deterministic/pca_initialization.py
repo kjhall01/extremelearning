@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 class PCIRegressor:
 	"""Principal Components Analysis-Initialized Extreme Learning Machine"""
 	def __init__(self, retained=None, activation='sigm'):
-		assert self.activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
+		assert activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
 		self.activation = activation
 		self.retained = retained
 		self.b = None
@@ -16,7 +16,7 @@ class PCIRegressor:
 		self.pca.fit(x)
 		x = self.pca.transform(x)
 		x_features, y_features = x.shape[1], y.shape[1]
-		self.hidden_neurons = [ (self.pca.components_.T[:x_features,:], np.random.randn(1)) for i in range(self.pca.components_.shape[0])]
+		self.hidden_neurons = [ (self.pca.components_.T[:x_features,i], np.random.randn(1)) for i in range(self.pca.components_.T.shape[1])]
 		h = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
 		hh = np.dot(np.transpose(h), h)
 		ht = np.dot(np.transpose(h), y)

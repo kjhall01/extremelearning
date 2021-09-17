@@ -3,9 +3,9 @@ from scipy.spatial.distance import cdist
 
 class ELMRegressor:
 	"""Extreme Learning Machine"""
-	def __init__(self, hidden_layer_size=5, activation='sigm'):
+	def __init__(self, hidden_layer_size=500, activation='sigm'):
 		self.hidden_layer_size = hidden_layer_size
-		assert self.activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
+		assert activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
 		self.activation = activation
 		self.b = None
 

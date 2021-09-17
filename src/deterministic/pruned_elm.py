@@ -5,9 +5,9 @@ from sklearn.metrics import r2_score
 
 class PrunedRegressor:
 	"""Extreme Learning Machine"""
-	def __init__(self, hidden_layer_size=5, activation='sigm'):
+	def __init__(self, hidden_layer_size=500, activation='sigm'):
 		self.hidden_layer_size = hidden_layer_size
-		assert self.activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
+		assert activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
 		self.activation = activation
 		self.b = None
 
@@ -16,8 +16,7 @@ class PrunedRegressor:
 		x_features, y_features = x.shape[1], y.shape[1]
 		self.hidden_neurons = [ (np.random.randn(x_features), np.random.randn(1)) for i in range(self.hidden_layer_size)]
 		h = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
-
-		scores = np.asarray([mutual_info_regression(h[i,:], np.squeeze(y)) for i in range(h.shape[0]) ])
+		scores = np.asarray([mutual_info_regression(h[:,i].reshape(-1,1), np.squeeze(y)) for i in range(h.shape[1]) ])
 		new_h = []
 		for i in range(len(scores)):
 			new_h.append(self.hidden_neurons[np.argmax(scores)])
@@ -66,4 +65,4 @@ class PrunedRegressor:
 			assert False, 'Invalid activation function {}'.format(self.activation)
 
 	def _aic(self, N, accuracy, S):
-		return 2 * N * np.log(((1 - accuracy) / N)**2 / N ) + S
+		return 2 * N * np.log(((1.00001 - accuracy) / N)**2 / N ) + S

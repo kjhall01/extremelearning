@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.spatial.distance import cdist
+from scipy.special import softmax
 
 class DropClassifier:
 	"""Probabilistic Output Extreme Learning Machine"""
@@ -21,7 +22,7 @@ class DropClassifier:
 	def fit(self, x, y, c=1):
 		y[y<0.5] = 0.0001
 		y[y>0.5] = 0.9999
-		assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
+		#assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
 		x_features, y_features = x.shape[1], y.shape[1]
 		weights = np.random.randn(self.hidden_layer_size, x_features)
 
@@ -30,13 +31,13 @@ class DropClassifier:
 			pctl = int(self.dropconnect_bias_pctl*100)
 			pctl = np.percentile(weights, pctl)
 			weight_mask[weights >= pctl] = 1.0 #if its greater than pctl, keep it
-			weight_mask[weight_mask < dropconnect_pr] = 0.0 #if its less than pctl and less than dropout pr, set to 0
+			weight_mask[weight_mask < self.dropconnect_pr] = 0.0 #if its less than pctl and less than dropout pr, set to 0
 			weight_mask[weight_mask > 0] = 1.0 # else set to  1.0
 			weights = weights*weight_mask
 		else:
 			weight_mask = np.random.rand(*weights.shape)
-			weight_mask[weight_mask < dropconnect_pr] = 0.0
-			weight_mask[weight_mask >= dropout_pr] = 1.0
+			weight_mask[weight_mask < self.dropconnect_pr] = 0.0
+			weight_mask[weight_mask >= self.dropout_pr] = 1.0
 			weights = weights*weight_mask
 
 		self.hidden_neurons = [ (np.squeeze(weights[i,:]), np.random.randn(1)) for i in range(self.hidden_layer_size)]
@@ -47,13 +48,13 @@ class DropClassifier:
 			pctl = int(self.dropout_bias_pctl*100)
 			pctl = np.percentile(h, pctl)
 			neuron_mask[h >= pctl] = 1.0
-			neuron_mask[neuron_mask < dropout_pr] =0.0
+			neuron_mask[neuron_mask < self.dropout_pr] =0.0
 			neuron_mask[neuron_mask > 0] = 1.0
 		else:
 			neuron_mask = np.random.rand(*h.shape)
-			neuron_mask[neuron_mask < dropout_pr] =0.0
-			neuron_mask[neuron_mask >= dropout_pr] = 1.0
-		weights = np.asarray([weights[i,:] if np.sum(neuron_mask[i]) > 0 for i in range(weights.shape[0]) ])
+			neuron_mask[neuron_mask < self.dropout_pr] =0.0
+			neuron_mask[neuron_mask >= self.dropout_pr] = 1.0
+		weights = np.asarray([weights[i,:]  for i in range(weights.shape[0]) if np.sum(neuron_mask[i]) > 0 ])
 
 		self.hidden_neurons = [ (np.squeeze(weights[i,:]), np.random.randn(1)) for i in range(weights.shape[0])]
 		self.H = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T

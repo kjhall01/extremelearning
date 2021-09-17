@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.special import softmax
 
 class ELMClassifier:
 	"""Probabilistic Output Extreme Learning Machine"""
@@ -8,7 +9,7 @@ class ELMClassifier:
 	def fit(self, x, y, c=1):
 		y[y<0.5] = 0.0001
 		y[y>0.5] = 0.9999
-		assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
+		#assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
 		x_features, y_features = x.shape[1], y.shape[1]
 		self.hidden_neurons = [ (np.random.randn(x_features), np.random.randn(1)) for i in range(self.hidden_layer_size)]
 		self.H = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T

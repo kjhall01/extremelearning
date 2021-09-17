@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.feature_selection import chi2
 from sklearn.metrics import accuracy_score
+from scipy.special import softmax
 
 class PrunedClassifier:
 	"""Probabilistic Output Extreme Learning Machine"""
@@ -10,14 +11,14 @@ class PrunedClassifier:
 	def fit(self, x, y, c=1):
 		y[y<0.5] = 0.0001
 		y[y>0.5] = 0.9999
-		assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
+		#assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
 		x_features, y_features = x.shape[1], y.shape[1]
 		self.hidden_neurons = [ (np.random.randn(x_features), np.random.randn(1)) for i in range(self.hidden_layer_size)]
 		h = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
 
-		scores = np.asarray([chi2(h[i,:], np.squeeze(y)) for i in range(h.shape[0]) ])
+		scores = np.asarray([np.squeeze(chi2(h[:,i].reshape(-1,1), np.argmax(y, axis=-1)))[0] for i in range(h.shape[1]) ])
 		new_h = []
-		for i in range(len(scores)):
+		for i in range(scores.shape[0]):
 			new_h.append(self.hidden_neurons[np.argmax(scores)])
 			scores[np.argmax(scores)] = -1
 
@@ -25,12 +26,12 @@ class PrunedClassifier:
 		for i in range(len(scores)):
 			self.hidden_neurons = new_h[:i+1]
 			h = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
-			hth = np.dot(np.transpose(self.H), self.H)
+			hth = np.dot(np.transpose(h), h)
 			inv_hth_plus_ic = np.linalg.pinv( hth + np.eye(hth.shape[0]) / c )
-			ht_logs = np.dot(np.transpose(self.H), np.log(1 - y) - np.log(y))
+			ht_logs = np.dot(np.transpose(h), np.log(1 - y) - np.log(y))
 			self.beta = -1 * np.dot( inv_hth_plus_ic, ht_logs)
 			preds = self.predict(x)
-			acc = accuracy_score(y, preds)
+			acc = accuracy_score(np.argmax(y, axis=-1), preds)
 			aics.append(self._aic(x.shape[0], acc, i+1))
 
 		aics = np.asarray(aics)
@@ -40,7 +41,7 @@ class PrunedClassifier:
 		h = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
 		hth = np.dot(np.transpose(h), h)
 		inv_hth_plus_ic = np.linalg.pinv( hth + np.eye(hth.shape[0]) / c )
-		ht_logs = np.dot(np.transpose(new_h[:best]), np.log(1 - y) - np.log(y))
+		ht_logs = np.dot(np.transpose(h), np.log(1 - y) - np.log(y))
 		self.beta = -1 * np.dot( inv_hth_plus_ic, ht_logs)
 
 	def predict(self, x):

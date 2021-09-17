@@ -4,9 +4,9 @@ from sklearn.decomposition import PCA
 
 class PCTRegressor:
 	"""Principal Components Analysis-Transformation Learning Machine"""
-	def __init__(self, hidden_layer_size=5, retained=None, activation='sigm'):
+	def __init__(self, hidden_layer_size=500, retained=None, activation='sigm'):
 		self.hidden_layer_size = hidden_layer_size
-		assert self.activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
+		assert activation in ['sigm', 'relu', 'tanh', 'lin', 'rbf_l1', 'rbf_l2', 'rbf_linf'], 'invalid activation function {}'.format(activation)
 		self.activation = activation
 		self.retained = retained
 		self.b = None

@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.decomposition import PCA
+from scipy.special import softmax
 
 class PCTClassifier:
 	"""Principal Components Transformation Probabilistic Output Extreme Learning Machine"""
@@ -10,7 +11,7 @@ class PCTClassifier:
 	def fit(self, x, y, c=1):
 		y[y<0.5] = 0.0001
 		y[y>0.5] = 0.9999
-		assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
+		#assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
 		self.pca = PCA(n_components=self.retained)
 		self.pca.fit(x)
 		x = self.pca.transform(x)

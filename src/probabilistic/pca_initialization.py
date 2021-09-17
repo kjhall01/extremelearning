@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.decomposition import PCA
+from scipy.special import softmax
 
 class PCIClassifier:
 	"""Principal Components Transformation Probabilistic Output Extreme Learning Machine"""
@@ -9,12 +10,12 @@ class PCIClassifier:
 	def fit(self, x, y, c=1):
 		y[y<0.5] = 0.0001
 		y[y>0.5] = 0.9999
-		assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
+		#assert len(x.shape) == 2 and len(y.shape) ==2, 'wrong shape inputs for fit'
 		self.pca = PCA(n_components=self.retained)
 		self.pca.fit(x)
 		x = self.pca.transform(x)
 		x_features, y_features = x.shape[1], y.shape[1]
-		self.hidden_neurons = [ (self.pca.components_.T[:x_features,:], np.random.randn(1)) for i in range(self.pca.components_.shape[0])]
+		self.hidden_neurons = [ (self.pca.components_.T[:x_features,i], np.random.randn(1)) for i in range(self.pca.components_.T.shape[1])]
 		self.H = np.asarray([ self._activate(neuron[0], x, neuron[1]) for neuron in self.hidden_neurons]).T
 		hth = np.dot(np.transpose(self.H), self.H)
 		inv_hth_plus_ic = np.linalg.pinv( hth + np.eye(hth.shape[0]) / c )
