@@ -87,23 +87,123 @@ This package was inspired by the need for an ELM library that:
 ## Documentation 
 
 ExtremeLearning implements twelve (12) ELM approaches: 6 regressors, and 6 classifiers. All of them implement the same API as SciKit-Learn's classifiers and regressors. Classifiers are implemented using the POELM approach. 
+
 ### Regressors 
 
-1. ELMRegressor - A basic ELM regression implementation  (ELM)
-2. PCTRegressor - ELM, with input data transformed by Principal Components Analysis (ELM-PCA)
-3. PCIRegressor - ELM, with hidden_layer_size and weights initialized according to PCA-ELM
-4. PCPRegressor - ELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
-5. PrunedRegressor - ELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
-6. DropRegressor - ELM with 'Dropout' and 'DropConnection'
+1. **ELMRegressor**
+A basic ELM regression implementation  (ELM)
+```
+import extremelearning as el
+elm = el.ELMRegressor(hidden_layer_size=500, activation='sigm', dropconnect_pr=0.5, dropout_pr=0.5, dropconnect_bias_pctl=0.9, dropout_bias_pctl=0.9)
+elm.fit(X, y)
+res = elm.predict(X)
+```
+
+2. **PCTRegressor**
+ELM, with input data transformed by Principal Components Analysis (ELM-PCA)
+```
+import extremelearning as el
+pct = el.PCTRegressor(hidden_layer_size=500, retained=None, activation='sigm') #retained can be (0, 1) percent variation or an integer number of PCA modes to retain
+pct.fit(X, y)
+res = pct.predict(X)
+```
+
+3. **PCIRegressor** 
+ELM, with hidden_layer_size and weights initialized according to PCA-ELM
+```
+import extremelearning as el
+pci = el.PCIRegressor(retained=None, activation='sigm') #retained can be (0, 1) percent variation or an integer number of PCA modes to retain
+pci.fit(X, y)
+res = pci.predict(X)
+```
+
+4. **PCPRegressor**
+ELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
+```
+import extremelearning as el
+pcp = el.PCPRegressor( hidden_layer_size=500, n_components=0.7, activation='sigm') #N_components can be (0, 1) percent variation or an integer number of PCA modes to retain
+pcp.fit(X, y)
+res = pcp.predict(X)
+```
+
+5. **PrunedRegressor** 
+ELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
+```
+import extremelearning as el
+prune = el.PrunedRegressor( hidden_layer_size=500, activation='sigm') 
+prune.fit(X, y)
+res = prune.predict(X)
+```
+
+6. **DropRegressor** 
+ELM with 'Dropout' and 'DropConnection'- randomized elimination of neurons and weights
+```
+import extremelearning as el
+drop = el.DropRegressor(hidden_layer_size=500, activation='sigm', dropconnect_pr=0.5, dropout_pr=0.5, dropconnect_bias_pctl=0.9, dropout_bias_pctl=0.9) 
+drop.fit(X, y)
+res = drop.predict(X)
+```
 
 ### Classifiers
-1. ELMClassifier - A basic POELM implementation  (ELM)
-2. PCTClassifier - POELM, with input data transformed by Principal Components Analysis (ELM-PCA)
-3. PCIClassifier - POELM, with hidden_layer_size and weights initialized according to PCA-ELM
-4. PCPClassifier - POELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
-5. PrunedClassifier - POELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
-6. DropClassifier - POELM with 'Dropout' and 'DropConnection' 
+1. **ELMClassifier**
+A  Probabilistic-Output ELM classification implementation  (POELM)
+```
+import extremelearning as el
+elm = el.ELMClassifier(hidden_layer_size=5, activation='sigm')
+elm.fit(X, y)
+res = elm.predict(X)
+probs = elm.predict_proba(X)
+```
 
+2. **PCTClassifier**
+POELM, with input data transformed by Principal Components Analysis (ELM-PCA)
+```
+import extremelearning as el
+pct = el.PCTClassifier(hidden_layer_size=500, retained=None, activation='sigm') #retained can be (0, 1) percent variation or an integer number of PCA modes to retain
+pct.fit(X, y)
+res = pct.predict(X)
+probs = pct.predict_proba(X)
+```
+
+3. **PCIClassifier** 
+POELM, with hidden_layer_size and weights initialized according to PCA-ELM
+```
+import extremelearning as el
+pci = el.PCIClassifier(retained=None, activation='sigm') #retained can be (0, 1) percent variation or an integer number of PCA modes to retain
+pci.fit(X, y)
+res = pci.predict(X)
+probs = pci.predict_proba(X)
+```
+
+4. **PCPClassifier**
+POELM, with initial neuron weights transformed by PCA so that the minimum number of neurons necessary to retain X% of variance of initial neuron weights is used.
+```
+import extremelearning as el
+pcp = el.PCPClassifier( hidden_layer_size=500, n_components=0.7, activation='sigm') #N_components can be (0, 1) percent variation or an integer number of PCA modes to retain
+pcp.fit(X, y)
+res = pcp.predict(X)
+probs = pcp.predict_proba(X)
+```
+
+5. **PrunedClassifier** 
+POELM, with pruning of 'irrelevant' neurons, according Chi-Squared and AIC minimization
+```
+import extremelearning as el
+prune = el.PrunedClassifier( hidden_layer_size=500, activation='sigm') 
+prune.fit(X, y)
+res = prune.predict(X)
+probs = prune.predict_proba(X)
+```
+
+6. **DropClassifier** 
+POELM with 'Dropout' and 'DropConnection'- randomized elimination of neurons and weights
+```
+import extremelearning as el
+drop = el.DropClassifier(hidden_layer_size=500, activation='sigm', dropconnect_pr=0.5, dropout_pr=0.5, dropconnect_bias_pctl=0.9, dropout_bias_pctl=0.9) 
+drop.fit(X, y)
+res = drop.predict(X)
+probs = drop.predict_proba(X)
+```
 
 ### Methods 
 **Regressor Methods** 
