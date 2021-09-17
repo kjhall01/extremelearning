@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: International Research Institute for Climate & Society
    index: 1
- - Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
+ - name: Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
    index: 2
 
 date: 17 September 2021
