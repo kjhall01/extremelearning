@@ -3,7 +3,7 @@ package:
   version: "0.1.1"
 
 source:
-  url:  https://github.com/kjhall01/extremelearning/archive/refs/tags/extremelearning-v1.2.tar.gz
+  url:  https://github.com/kjhall01/extremelearning/archive/refs/tags/extremelearning-v1.3.tar.gz
 build:
   number: 0
   string: extremelearning
@@ -25,7 +25,8 @@ requirements:
 test:
   imports:
     - extremelearning
-
+    - extremelearning.probabilistic
+    - extremelearning.deterministic
 about:
   home:
   license: MIT
