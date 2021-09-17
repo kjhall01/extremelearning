@@ -1,5 +1,5 @@
 ---
-bibliography: paper.bibtex
+bibliography: paper.bib
 title: 'ExtremeLearning: A Selection of Pure-Python Extreme Learning Machine Approaches '
 tags:
   - Python
