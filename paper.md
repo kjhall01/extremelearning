@@ -24,7 +24,7 @@ bibliography: paper.bibtex
 
 # Summary
 
-An "Extreme Learning Machine" (ELM) is a fast, non-linear regression model, which fits the output layer of a randomly-initialized feed forward neural network using a Moore-Penrose Generalized Inverse [@Huang:2020]. Since it was published in the early 2000s, numerous related methods have been proposed. Each new method slightly changes the underlying ELM Model, either by pruning nodes in the hidden layer, applying Principal Components Analysis to the training data, modifying the hidden layer weight initialization scheme, changing the objective function, or some other new method. `ExtremeLearning` is a fully open-source python package that implements these new Regressors and Classifiers based on ELM in the style of SciKit-Learn, in a way that is compatible with python parallelism and cluster computing .
+An "Extreme Learning Machine" (ELM) is a fast, non-linear regression model, which fits the output layer of a randomly-initialized feed forward neural network using a Moore-Penrose Generalized Inverse [@Huang:2004]. Since it was published in the early 2000s, numerous related methods have been proposed. Each new method slightly changes the underlying ELM Model, either by pruning nodes in the hidden layer, applying Principal Components Analysis to the training data, modifying the hidden layer weight initialization scheme, changing the objective function, or some other new method. `ExtremeLearning` is a fully open-source python package that implements these new Regressors and Classifiers based on ELM in the style of SciKit-Learn, in a way that is compatible with python parallelism and cluster computing .
 
 # Statement of need
 
