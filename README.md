@@ -78,7 +78,7 @@ This package was inspired by the need for an ELM library that:
    conda install -c hallkjc01 extremelearning
    ```
 2. Read the [Documentation](https://github.com/kjhall01/extremelearning/)
-3. Check out the [demo](
+3. Check out the [demo](https://github.com/kjhall01/extremelearning/blob/main/demo.ipynb)
 
 
 ## Documentation 
