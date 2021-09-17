@@ -22,22 +22,18 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
 <p align="center">
   <h3 align="center">ExtremeLearning: A Selection of ELM-based Approaches </h3>
   
   Extreme Learning is a python module that serves as a centralized collection of implementations of various "Extreme Learning Machine" machine learning approaches. Some basic ELM approaches are available in Python, but it can be difficult to find the right tool for the job. The cutting-edge ELM approaches are even harder to find, if they're even available. Extreme Learning implements some of these newer, more interesting ELM approaches, so users can get right to the science, rather than waste their time trying to implement ELM. 
   
-    <br />
     <a href="#documentation"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://github.com/kjhall01/extremelearning/blob/main/demo.ipynb">View Demo</a>
     ·
     <a href="https://github.com/kjhall01/extremelearning/issues">Report Bug</a>
     ·
     <a href="https://github.com/kjhall01/extremelearning/issues">Request Feature</a>
-  </p>
 </p>
 
 
