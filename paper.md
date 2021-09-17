@@ -1,4 +1,5 @@
 ---
+bibliography: paper.bibtex
 title: 'ExtremeLearning: A Selection of Pure-Python Extreme Learning Machine Approaches '
 tags:
   - Python
@@ -19,7 +20,6 @@ affiliations:
  - name: Center for Earth System Modeling, Analysis, & Data (ESMAD), Department of Meteorology and Atmospheric Science, The Pennsylvania State University
    index: 2
 date: 17 September 2021
-bibliography: paper.bibtex
 
 ---
 
