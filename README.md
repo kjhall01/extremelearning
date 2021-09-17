@@ -24,23 +24,19 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/kjhall01/xcast/">
-    <img src="images/logo.png" alt="Logo" width="200" height="200">
-  </a>
-
-  <h3 align="center">XCast: A Gridpoint-Wise Statistical Modeling Library for the Earth Sciences </h3>
+  <h3 align="center">ExtremeLearning: A Selection of ELM-based Approaches </h3>
   
-  XCast is a free and open source (passion) project designed to help Earth Scientists scale single-point-in-space regression approaches to spatial gridded data using the popular Earth Science data tool, Xarray. XCast provides a set of tools useful for manipulating and preprocessing Xarray datasets, and implements a 
-"fit-predict" training and prediction framework similar to those of the traditional Python statistical tools. More than just a "double-for-loop" wrapper for machine learning libraries, XCast is designed to be high-performance, intuitive, and easily extensible. It is our hope that XCast will serve to bridge the gap between the two-dimensional world of Python Data Science (Samples x Features), and the four-dimensional world of climate data (Samples x Features x Latitude x Longitude).
+  Extreme Learning is a python module that serves as a centralized collection of implementations of various "Extreme Learning Machine" machine learning approaches. Some basic ELM approaches are available in Python, but it can be difficult to find the right tool for the job. The cutting-edge ELM approaches are even harder to find, if they're even available. Extreme Learning implements some of these newer, more interesting ELM approaches, so users can get right to the science, rather than waste their time trying to implement ELM. 
+  
     <br />
-    <a href="https://github.com/kjhall01/xcast/blob/main/XCAST_DOCS.md"><strong>Explore the docs »</strong></a>
+    <a href="#documentation"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/kjhall01/xcast/blob/main/XCastDeterministic.ipynb">View Demo</a>
+    <a href="https://github.com/kjhall01/extremelearning/blob/main/demo.ipynb">View Demo</a>
     ·
-    <a href="https://github.com/kjhall01/xcast/issues">Report Bug</a>
+    <a href="https://github.com/kjhall01/extremelearning/issues">Report Bug</a>
     ·
-    <a href="https://github.com/kjhall01/xcast/issues">Request Feature</a>
+    <a href="https://github.com/kjhall01/extremelearning/issues">Request Feature</a>
   </p>
 </p>
 
@@ -50,11 +46,9 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li><a href="#why-xcast">Why XCast?</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#documentation">Documentation</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -64,11 +58,9 @@
 
 
 <!-- Why XCast -->
-## Why XCast?
+## About
 
-Numerous problems in the Earth Sciences are solved by finding statistical relationships (multiple-regression type) between variables measured at a given point in space, across time. Often, it's desirable to apply these approaches at many points in space, on a 'gridpoint-wise' basis. While Python has numerous [statistical](http://www.scipy.org/) and [machine learning](http://scikit-learn.org/stable/) libraries, none are designed to accomodate fitting more than one statistical model at once, i.e., at many points in space, as is required by this gridpoint-wise approach. 
 
-XCast enables users to apply Python's various statistical tools to spatial gridded data on a gridpoint-wise basis, without having to manually track and manage different dimensions, lists of model instances, or metadata. Built on [Xarray](http://xarray.pydata.org/en/stable/) and [Dask](https://dask.org/), two powerful data science libraries, XCast is capable of analyzing "Big-Data" that won't fit in RAM, and can be scaled to supercomputer clusters. It is designed to be extended to accomodate new statistical libraries easily, and to maximize synergy with the PanGEO stack and other Earth Science data analytics packages like XClim, ClimPred, and XSkillScore. 
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -118,15 +110,15 @@ Email: kjhall@iri.columbia.edu (This is a side project, so it may take a while t
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/kjhall01/xcast.svg?style=for-the-badge
-[contributors-url]: https://github.com/kjhall01/xcast/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/kjhall01/xcast.svg?style=for-the-badge
-[forks-url]: https://github.com/kjhall01/xcast/network/members
-[stars-shield]: https://img.shields.io/github/stars/kjhall01/xcast.svg?style=for-the-badge
-[stars-url]: https://github.com/kjhall01/xcast/stargazers
-[issues-shield]: https://img.shields.io/github/issues/kjhall01/xcast.svg?style=for-the-badge
-[issues-url]: https://github.com/kjhall01/xcast/issues
-[license-shield]: https://img.shields.io/github/license/kjhall01/xcast.svg?style=for-the-badge
-[license-url]: https://github.com/kjhall01/xcast/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/kjhall01/extremelearning.svg?style=for-the-badge
+[contributors-url]: https://github.com/kjhall01/extremelearning/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/kjhall01/extremelearning.svg?style=for-the-badge
+[forks-url]: https://github.com/kjhall01/extremelearning/network/members
+[stars-shield]: https://img.shields.io/github/stars/kjhall01/extremelearning.svg?style=for-the-badge
+[stars-url]: https://github.com/kjhall01/extremelearning/stargazers
+[issues-shield]: https://img.shields.io/github/issues/kjhall01/extremelearning.svg?style=for-the-badge
+[issues-url]: https://github.com/kjhall01/extremelearning/issues
+[license-shield]: https://img.shields.io/github/license/kjhall01/extremelearning.svg?style=for-the-badge
+[license-url]: https://github.com/kjhall01/extremelearning/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/kjhall01
