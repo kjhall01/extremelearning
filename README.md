@@ -84,15 +84,19 @@ This package was inspired by the need for an ELM library that:
 ## Documentation 
 
 ExtremeLearning implements twelve (12) ELM approaches: 6 regressors, and 6 classifiers. All of them implement the same API as SciKit-Learn's classifiers and regressors. 
-
-ExtremeLearning Regressors have the following methods: 
+### Regressors 
+**Regressor Methods** 
 1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, 1) 
 2. ```.predict(x)``` - make predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. 
 
-ExtremeLearning Classifiers have the following methods: 
+
+
+### Classifiers
+**Classifier Methods**
 1. ```.fit(x, y)``` - fit the model to training data, where ```x``` is of shape (n_samples, n_features), and ```y``` is of shape (n_samples, n_classes) and is one-hot encoded.  
 2. ```.predict(x)``` - make class predictions on using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. Output is not one-hot encoded. 
 3. ```.predict_proba(x)``` - make probabilistic class predictions using a previously trained model, where ```x``` is of shape (n_samples, n_features) and has the same number of features as the original training set. Output is of shape (n_samples, n_classes) and represents a predicted probability for each class, that will sum to 1.0. 
+
 
 
 <!-- CONTRIBUTING -->
