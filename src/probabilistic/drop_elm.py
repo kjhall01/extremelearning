@@ -37,7 +37,7 @@ class DropClassifier:
 		else:
 			weight_mask = np.random.rand(*weights.shape)
 			weight_mask[weight_mask < self.dropconnect_pr] = 0.0
-			weight_mask[weight_mask >= self.dropout_pr] = 1.0
+			weight_mask[weight_mask >= self.dropconnect_pr] = 1.0
 			weights = weights*weight_mask
 
 		self.hidden_neurons = [ (np.squeeze(weights[i,:]), np.random.randn(1)) for i in range(self.hidden_layer_size)]
